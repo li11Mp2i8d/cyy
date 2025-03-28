@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表格形式的简单计算器</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #000;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stars {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%,
+            100% {
+                opacity: 0.2;
+            }
+            50% {
+                opacity: 1;
+            }
+        }
+
+        .click-effect {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            animation: clickEffect 1s ease-out forwards;
+        }
+
+        @keyframes clickEffect {
+            0% {
+                transform: scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: scale(3);
+                opacity: 0;
+            }
+        }
+
+        .meteor {
+            position: absolute;
+            width: 3px;
+            height: 10px;
+            background: linear-gradient(to bottom, transparent, white);
+            animation: meteorFall 1s linear forwards;
+        }
+
+        @keyframes meteorFall {
+            0% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+        }
+
+        table {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-collapse: collapse;
+            z-index: 1;
+        }
+
+        td {
+            padding: 10px;
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            font-size: 24px;
+            text-align: right;
+            border: none;
+            outline: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: white;
+        }
+
+        button {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            border: none;
+            cursor: pointer;
+            background: transparent;
+            color: black;
+            font-size: 18px;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+
+        button:active {
+            transform: scale(0.95);
+            box-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+        }
+    </style>
+</head>
+
+<body>
+    <div class="stars"></div>
+    <table>
+        <tr>
+            <td colspan="4">
+                <input type="text" id="display" readonly>
+            </td>
+        </tr>
+        <tr>
+            <td><button style="background-color: #FFE5B4;" onclick="appendToDisplay('7'); playSound(event)">7</button></td>
+            <td><button style="background-color: #FFDAB9;" onclick="appendToDisplay('8'); playSound(event)">8</button></td>
+            <td><button style="background-color: #FFF6CC;" onclick="appendToDisplay('9'); playSound(event)">9</button></td>
+            <td><button style="background-color: #E6F7FF;" onclick="appendToDisplay('/'); playSound(event)">/</button></td>
+        </tr>
+        <tr>
+            <td><button style="background-color: #F0FFF0;" onclick="appendToDisplay('4'); playSound(event)">4</button></td>
+            <td><button style="background-color: #FFF0F5;" onclick="appendToDisplay('5'); playSound(event)">5</button></td>
+            <td><button style="background-color: #E5F6FF;" onclick="appendToDisplay('6'); playSound(event)">6</button></td>
+            <td><button style="background-color: #FFF3CC;" onclick="appendToDisplay('*'); playSound(event)">*</button></td>
+        </tr>
+        <tr>
+            <td><button style="background-color: #FFEBEB;" onclick="appendToDisplay('1'); playSound(event)">1</button></td>
+            <td><button style="background-color: #F5FFFA;" onclick="appendToDisplay('2'); playSound(event)">2</button></td>
+            <td><button style="background-color: #FFF8DC;" onclick="appendToDisplay('3'); playSound(event)">3</button></td>
+            <td><button style="background-color: #E0FFFF;" onclick="appendToDisplay('-'); playSound(event)">-</button></td>
+        </tr>
+        <tr>
+            <td><button style="background-color: #F8F8FF;" onclick="appendToDisplay('0'); playSound(event)">0</button></td>
+            <td><button style="background-color: #FFF6CC;" onclick="appendToDisplay('.'); playSound(event)">.</button></td>
+            <td><button style="background-color: #E6F7FF;" onclick="calculate(); playSound(event)">=</button></td>
+            <td><button style="background-color: #FFE5B4;" onclick="appendToDisplay('+'); playSound(event)">+</button></td>
+        </tr>
+        <tr>
+            <td colspan="4"><button style="background-color: #FFDAB9;" onclick="clearDisplay(); playSound(event)">C</button></td>
+        </tr>
+    </table>
+    <audio id="clickSound" src="https://www.soundjay.com/button/beep-07.wav"></audio>
+    <script>
+        let audioEnabled = false;
+        const audio = document.getElementById('clickSound');
+        const starsContainer = document.querySelector('.stars');
+        const numStars = 200;
+
+        for (let i = 0; i < numStars; i++) {
+            const star = document.createElement('div');
+            star.classList.add('star');
+            const size = Math.random() * 2;
+            star.style.width = `${size}px`;
+            star.style.height = `${size}px`;
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDelay = `${Math.random() * 3}s`;
+            starsContainer.appendChild(star);
+        }
+
+        function appendToDisplay(value) {
+            document.getElementById('display').value += value;
+        }
+
+        function clearDisplay() {
+            document.getElementById('display').value = '';
+        }
+
+        function calculate() {
+            try {
+                document.getElementById('display').value = eval(document.getElementById('display').value);
+            } catch (error) {
+                document.getElementById('display').value = '错误';
+            }
+        }
+
+        function playSound(event) {
+            if (audioEnabled) {
+                audio.currentTime = 0;
+                audio.play();
+            }
+            createClickEffect(event);
+        }
+
+        function createClickEffect(event) {
+            const clickEffect = document.createElement('div');
+            clickEffect.classList.add('click-effect');
+            const colors = ['#FF0000', '#00FF00', '#0000FF', '#FFFF00', '#FF00FF', '#00FFFF'];
+            const randomColor = colors[Math.floor(Math.random() * colors.length)];
+            clickEffect.style.backgroundColor = randomColor;
+            clickEffect.style.left = `${event.clientX - 25}px`;
+            clickEffect.style.top = `${event.clientY - 25}px`;
+            starsContainer.appendChild(clickEffect);
+            setTimeout(() => {
+                clickEffect.remove();
+            }, 1000);
+        }
+
+        document.addEventListener('mousemove', function (event) {
+            const meteor = document.createElement('div');
+            meteor.classList.add('meteor');
+            meteor.style.left = `${event.clientX}px`;
+            meteor.style.top = `${event.clientY}px`;
+            starsContainer.appendChild(meteor);
+            setTimeout(() => {
+                meteor.remove();
+            }, 1000);
+        });
+
+        document.addEventListener('click', function enableAudio() {
+            audio.play().then(() => {
+                audio.pause();
+                audioEnabled = true;
+                document.removeEventListener('click', enableAudio);
+            }).catch(() => {
+                console.log('仍无法播放音频，请检查网络或浏览器设置。');
+            });
+        });
+    </script>
+</body>
+
+</html>
+    
