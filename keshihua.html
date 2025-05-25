@@ -1,38 +1,77 @@
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="zh">
 <head>
     <meta charset="UTF-8">
-    <title>我的数据可视化图集</title>
-    <link rel="stylesheet" href="style.css">
+    <title>图片展示网页</title>
+    <style>
+        body {
+            font-family: "微软雅黑", sans-serif;
+            background-color: #f0f0f0;
+            padding: 20px;
+        }
+        .gallery {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+        .photo-card {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            overflow: hidden;
+            width: 350px;
+            text-align: center;
+        }
+        .photo-card img {
+            max-width: 100%;
+            height: auto;
+        }
+        .caption {
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #fafafa;
+        }
+    </style>
 </head>
 <body>
-    <h1>我的数据可视化图集</h1>
+
+    <h1 style="text-align: center;">我的可视化图表展示</h1>
 
     <div class="gallery">
+
         <div class="photo-card">
             <p class="caption">弹幕高频词词云</p>
-            <img src="images/弹幕高频词词云.png" alt="弹幕高频词词云">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/弹幕高频词词云.png" alt="弹幕高频词词云">
         </div>
+
         <div class="photo-card">
             <p class="caption">情感网络图</p>
-            <img src="images/情感网络.png" alt="情感网络">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/情感网络.png" alt="情感网络">
         </div>
+
         <div class="photo-card">
             <p class="caption">情感高频词柱状图</p>
-            <img src="images/情感高频词柱状图.png" alt="情感高频词柱状图">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/情感高频词柱状图.png" alt="情感高频词柱状图">
         </div>
+
         <div class="photo-card">
             <p class="caption">情感高频词词云</p>
-            <img src="images/情感高频词词云.png" alt="情感高频词词云">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/情感高频词词云.png" alt="情感高频词词云">
         </div>
+
         <div class="photo-card">
             <p class="caption">柱状图 & 饼状图</p>
-            <img src="images/柱状图&饼状图.png" alt="柱状图&饼状图">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/柱状图&饼状图.png" alt="柱状图&饼状图">
         </div>
+
         <div class="photo-card">
             <p class="caption">高频词柱状图</p>
-            <img src="images/高频词柱状图.png" alt="高频词柱状图">
+            <img src="https://raw.githubusercontent.com/li11Mp2i8d/cyy/main/高频词柱状图.png" alt="高频词柱状图">
         </div>
+
     </div>
+
 </body>
 </html>
