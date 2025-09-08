@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人简历 - AI工程师</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Microsoft YaHei', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #f8f9fa;
+            border-radius: 8px;
+        }
+
+        .name {
+            font-size: 28px;
+            margin-bottom: 10px;
+            color: #2c3e50;
+        }
+
+        .contact {
+            color: #666;
+            margin-bottom: 10px;
+        }
+
+        .section {
+            margin-bottom: 30px;
+            padding: 20px;
+            background: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .section-title {
+            font-size: 22px;
+            color: #2c3e50;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #eee;
+        }
+
+        .item {
+            margin-bottom: 20px;
+        }
+
+        .item-title {
+            font-size: 18px;
+            color: #34495e;
+            margin-bottom: 8px;
+        }
+
+        .item-subtitle {
+            font-size: 16px;
+            color: #7f8c8d;
+            margin-bottom: 5px;
+        }
+
+        .item-content {
+            color: #666;
+            margin-left: 20px;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .skill-tag {
+            background: #e1f5fe;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 14px;
+            color: #0288d1;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+            }
+            .section {
+                box-shadow: none;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="name">你的姓名</h1>
+        <div class="contact">
+            电话：xxx-xxxx-xxxx | 邮箱：your.email@example.com<br>
+            GitHub：github.com/yourusername | 技术博客：blog.example.com
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">教育背景</h2>
+        <div class="item">
+            <h3 class="item-title">XXX大学</h3>
+            <div class="item-subtitle">计算机科学与技术 | 本科 | 2021-2025</div>
+            <div class="item-content">
+                主修课程：机器学习、深度学习、计算机视觉、自然语言处理、数据结构与算法
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">专业技能</h2>
+        <div class="skills">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">PyTorch</span>
+            <span class="skill-tag">TensorFlow</span>
+            <span class="skill-tag">机器学习</span>
+            <span class="skill-tag">深度学习</span>
+            <span class="skill-tag">计算机视觉</span>
+            <span class="skill-tag">自然语言处理</span>
+            <span class="skill-tag">Linux</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">项目经验</h2>
+        <div class="item">
+            <h3 class="item-title">基于深度学习的图像识别系统</h3>
+            <div class="item-subtitle">核心开发者 | 2023.03-2023.06</div>
+            <div class="item-content">
+                • 使用PyTorch框架实现了基于ResNet的图像分类模型<br>
+                • 通过数据增强和模型优化，将识别准确率提升至95%<br>
+                • 实现模型量化和剪枝，将模型大小减少40%，推理速度提升30%<br>
+                • 使用Docker部署模型，支持分布式训练和在线服务
+            </div>
+        </div>
+        
+        <div class="item">
+            <h3 class="item-title">智能对话系统开发</h3>
+            <div class="item-subtitle">项目负责人 | 2023.07-2023.09</div>
+            <div class="item-content">
+                • 基于BERT和GPT模型实现了智能对话系统<br>
+                • 使用强化学习优化对话策略，提升用户满意度20%<br>
+                • 实现了多轮对话上下文管理和意图识别功能<br>
+                • 系统已服务超过1000名用户，获得4.5/5的用户评分
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">实习经历</h2>
+        <div class="item">
+            <h3 class="item-title">XXX科技有限公司</h3>
+            <div class="item-subtitle">AI算法实习生 | 2023.06-2023.09</div>
+            <div class="item-content">
+                • 参与开发计算机视觉算法，提升目标检测准确率15%<br>
+                • 优化深度学习模型，减少30%的计算资源消耗<br>
+                • 编写技术文档，开发自动化测试脚本<br>
+                • 参与团队代码审查，提供优化建议
+            </div>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2 class="section-title">获奖经历</h2>
+        <div class="item">
+            <div class="item-content">
+                • 2023年全国大学生人工智能创新大赛 一等奖<br>
+                • 2022年华为软件精英挑战赛 三等奖<br>
+                • 优秀学生奖学金
+            </div>
+        </div>
+    </div>
+</body>
+</html>
